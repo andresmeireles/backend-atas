@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy_on_fly:
-    if: github.event_name == "push"
+    if: github.event.workfow_run.event == "push"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
