@@ -5,6 +5,10 @@ on:
     workflows: ["Laravel"]
     types:
       - completed
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   deploy_on_fly:
