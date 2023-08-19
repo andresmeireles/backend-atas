@@ -1,0 +1,26 @@
+http://localhost {
+	redir https://{host}{uri}
+}
+
+localhost:80 {
+	reverse_proxy localhost:443
+}
+
+localhost:443 {
+	tls "/data/certs/local.cert.pem" "/data/certs/local.key.pem"
+	root * /application/public
+	encode gzip
+
+	php_fastcgi php-fpm:9000 {
+		root /application/public
+		index index.php
+	}
+
+	file_server
+	try_files {path} {path}/ /index.php?{query}
+}
+
+# localhost:80 {
+# 	# tls "/data/certs/local.cert.pem" "/data/certs/local.key.pem"
+# 	reverse_proxy localhost:443
+# }
