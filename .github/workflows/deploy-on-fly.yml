@@ -1,0 +1,17 @@
+name: Deploy on Fly
+
+on:
+  workflow_run:
+    workflows: ["Laravel"]
+    types:
+      - completed
+
+jobs:
+  deploy_on_fly:
+    runs_on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install Fly.io
+      run: curl -L https://fly.io/install.sh | sh
+    - name: Execute deploy
+      run: fly deploy
