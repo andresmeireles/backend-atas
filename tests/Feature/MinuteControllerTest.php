@@ -28,7 +28,10 @@ class MinuteControllerTest extends TestCase
             'name' => 'presiding',
             'type' => 'call'
         ]);
-        $meet->items()->attach($item, ['is_obligatory' => true, 'is_repeatable' => false]);
+        $meet->items()->attach(
+            $item,
+            ['is_obligatory' => true, 'is_repeatable' => false]
+        );
     }
 
     /**
