@@ -11,10 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Install Fly and Execute deploy
+    - uses: superfly/flyctl-actions/setup-flyctl@master
+    - name: Deploy
+      run: flyctl deploy --remote-only]
       env:
         FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-      run: |
-        curl -L https://fly.io/install.sh | sh
-        /home/runner/.fly/bin/flyct auth token $FLY_API_TOKEN
-        /home/runner/.fly/bin/flyct deploy
