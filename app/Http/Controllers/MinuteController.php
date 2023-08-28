@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\User\AuthUser;
 use App\Error\Error;
 use App\Http\Requests\AddMinuteRequest;
 use App\Http\Requests\EditMinuteRequest;
@@ -13,13 +14,12 @@ use App\Models\Minute;
 use App\Service\Minute\Add;
 use App\Service\Minute\Edit;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Auth;
 
 class MinuteController extends Controller
 {
     public function add(AddMinuteRequest $request, Add $add): JsonResponse
     {
-        $addedMinute = $add->addNewMinute($request->validated(), Auth::user());
+        $addedMinute = $add->addNewMinute($request->validated(), AuthUser::user());
         if ($addedMinute instanceof Error) {
             return ApiResponse::bad($addedMinute->message());
         }
@@ -28,7 +28,7 @@ class MinuteController extends Controller
 
     public function update(int $id, EditMinuteRequest $request, Edit $edit): JsonResponse
     {
-        $editedMinute = $edit->updateById($id, $request->validated(), Auth::user());
+        $editedMinute = $edit->updateById($id, $request->validated(), AuthUser::user());
         if ($editedMinute instanceof Error) {
             return ApiResponse::bad($editedMinute->message());
         }

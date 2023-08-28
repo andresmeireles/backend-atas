@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Service\Minute\Create;
 use App\Service\Minute\Edit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\MockObject\MockObject;
 use Tests\TestCase;
 
 /**
@@ -81,7 +82,7 @@ class EditTest extends TestCase
 
     private Edit $edit;
 
-    private Create $create;
+    private Create&MockObject $create;
 
     protected function setUp(): void
     {

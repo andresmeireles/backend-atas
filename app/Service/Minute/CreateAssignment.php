@@ -10,7 +10,6 @@ use App\Models\AssignmentHymn;
 use App\Models\AssignmentSimpleText;
 use App\Models\MeetItem;
 use App\Models\Minute;
-use Illuminate\Log\Logger;
 
 class CreateAssignment
 {
@@ -21,6 +20,9 @@ class CreateAssignment
     ) {
     }
 
+    /**
+     * @param array<string, mixed> $assignment
+     */
     public function createAssignment(
         Minute $minute,
         array $assignment

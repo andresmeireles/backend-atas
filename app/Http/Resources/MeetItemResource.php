@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use App\Models\MeetItem;
@@ -12,7 +14,7 @@ class MeetItemResource extends JsonResource
     use HasLinks;
 
     /**
-     * @param MeetItem $resource
+     * @param mixed $resource
      */
     public function __construct(public $resource)
     {

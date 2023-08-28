@@ -32,5 +32,16 @@ grumphp:
         exclude_group: []
         always_execute: false
         order: null
-    testsuites: []
-    extensions: []
+      phpcs:
+        standard: phpcs.xml
+        ignore_patterns:
+          - /resources/views/*
+          - /public/index.php
+      psalm:
+        config: psalm.xml
+        threads: 2
+      phpstan:
+        autoload_file: ~
+        configuration: ~
+        memory_limit: "1G"
+        use_grumphp_paths: true

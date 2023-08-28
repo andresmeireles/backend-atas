@@ -65,6 +65,10 @@ class SyncMeetItemToTypes extends Command
             multiple: false,
         );
 
+        if (is_array($selectItem)) {
+            $selectItem = $selectItem[0];
+        }
+
         $selectedItem = $items->firstWhere(fn (MeetItem $i) => $i->name === $selectItem);
         if ($selectedItem === null) {
             $this->error('Item not found');

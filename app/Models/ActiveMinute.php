@@ -7,6 +7,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * App\Models\ActiveMinute
+ *
+ * @property int $id
+ * @property int $minute_id
+ * @property string $created_at
+ * @property-read \App\Models\Minute $minute
+ * @method static \Database\Factories\ActiveMinuteFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|ActiveMinute newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ActiveMinute newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ActiveMinute query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ActiveMinute whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ActiveMinute whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ActiveMinute whereMinuteId($value)
+ * @mixin \Eloquent
+ */
 class ActiveMinute extends Model
 {
     use HasFactory;

@@ -29,6 +29,9 @@ class CheckAppVersion
             return $next($request);
         }
         $minVersion = $this->config->where('name', Config::MIN_APP_VERSION)->first();
+        if ($minVersion === null) {
+            return ApiResponse::bad('app version not found');
+        }
         $versionCompared = version_compare($appVersion, $minVersion->value);
         if ($versionCompared < 0) {
             return ApiResponse::bad('app version bellow minimum, please update your app');

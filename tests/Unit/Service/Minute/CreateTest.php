@@ -14,7 +14,6 @@ use App\Models\User;
 use App\Service\Minute\Create;
 use App\Service\Minute\CreateAssignment;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use PHPUnit\Framework\MockObject\MockObject;
 use Tests\TestCase;
 
 /**
@@ -98,6 +97,7 @@ class CreateTest extends TestCase
     {
         parent::setUp();
 
+        /** @var MeetType */
         $meet = MeetType::factory()->create(['name' => 'sacramental']);
         $item = MeetItem::factory()->create(['name' => 'presiding', 'type' => 'call']);
         $meet->items()->attach($item, ['is_obligatory' => true, 'is_repeatable' => false]);
@@ -119,6 +119,7 @@ class CreateTest extends TestCase
         $user = User::factory()->create();
 
         // act
+        /** @var Minute */
         $result = $this->create->create($user, [
             'schema' => 'sacramental',
             'date' => now()->format('Y-m-d'),
@@ -137,6 +138,7 @@ class CreateTest extends TestCase
         $user = User::factory()->create();
 
         // act
+        /** @var Minute */
         $result = $this->create->create($user, [
             'schema' => 'sacramental',
             'date' => '2023-06-09',

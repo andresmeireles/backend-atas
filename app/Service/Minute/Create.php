@@ -9,13 +9,7 @@ use App\Models\MeetItem;
 use App\Models\MeetType;
 use App\Models\Minute;
 use App\Models\User;
-use App\Service\Minute\Assignments\Label;
-use App\Service\Minute\Meeting\MeetStatus;
-use App\Service\Minute\Schemas\Definitions\Schema;
-use App\Service\Minute\Schemas\Definitions\SchemaTypes;
-use App\Service\Minute\Schemas\Sacramental;
-use Illuminate\Log\Logger;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class Create
 {
@@ -80,7 +74,7 @@ class Create
                 continue;
             }
 
-            if ($item->pivot->is_repeatable) {
+            if ($item->pivot?->is_repeatable ?? false) {
                 $filteredItems[] = $a;
                 continue;
             }
@@ -103,6 +97,9 @@ class Create
         return sprintf('S-%s-%s', $data['schema'], now()->getTimestamp());
     }
 
+    /**
+     * @param array<string, mixed> $assignments
+     */
     private function validatedAssignments(array $assignments): bool
     {
         if (count($assignments) === 0) {
