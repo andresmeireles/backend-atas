@@ -5,9 +5,11 @@ on:
     workflows: ["Laravel"]
     types:
       - completed
+    branches: ["main"]
 
 jobs:
   deploy_on_fly:
+    if: github.event.workflow_run.event == 'push'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
