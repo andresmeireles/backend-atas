@@ -21,6 +21,7 @@ class MinuteControllerTest extends TestCase
     {
         parent::setUp();
 
+        /** @var MeetType */
         $meet = MeetType::factory()->create([
             'name' => 'sacramental'
         ]);

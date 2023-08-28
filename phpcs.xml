@@ -17,16 +17,20 @@
     <rule ref="PSR12">
         <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceBefore"/>
         <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceAfter"/>
+        <exclude name="PSR12.Traits.UseDeclaration.MultipleImport" />
+    </rule>
+
+    <rule ref="PSR1">
+        <exclude name="PSR1.Files.SideEffects.FoundWithSymbols" />
     </rule>
 
     <rule ref= "Generic.Files.LineLength">
         <properties>
-            <property name="lineLimit" value="80"/>
+            <property name="lineLimit" value="120"/>
             <property name="absoluteLineLimit" value="120"/>
         </properties>
     </rule>
     <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
-
 </ruleset>

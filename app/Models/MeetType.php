@@ -8,6 +8,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * App\Models\MeetType
+ *
+ * @property int $id
+ * @property string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\MeetItem> $items
+ * @property-read int|null $items_count
+ * @method static \Database\Factories\MeetTypeFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|MeetType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MeetType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MeetType query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MeetType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MeetType whereName($value)
+ * @mixin \Eloquent
+ */
 class MeetType extends Model
 {
     use HasFactory;
@@ -23,6 +38,9 @@ class MeetType extends Model
         'name',
     ];
 
+    /**
+     * @var string[]
+     */
     protected $appends = [
         'meet_items',
     ];
@@ -63,7 +81,7 @@ class MeetType extends Model
         /** @var string[] */
         $obligatory = $type
             ->items
-            ->where(fn (MeetItem $i) => $i->pivot->is_obligatory)
+            ->where(fn (MeetItem $i) => $i->pivot?->is_obligatory ?? true)
             ->map(fn (MeetItem $i) => $i->name)
             ->toArray();
 

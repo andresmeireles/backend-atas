@@ -19,8 +19,7 @@ readonly class Add
     public function __construct(
         private Minute $minute,
         private ActiveMinute $activeMinute,
-        private Create $create,
-        private CreateAssignment $createAssignment,
+        private Create $create
     ) {
     }
 
@@ -30,6 +29,9 @@ readonly class Add
     public function addNewMinute(array $data, User $user): Minute|Error
     {
         $dt = DateTime::createFromFormat('Y-m-d', $data['date']);
+        if ($dt === false) {
+            return AppError::UNDEFINED_ERROR;
+        }
         $dt->setTime(23, 59, 59);
         if ($dt->getTimestamp() < now()->getTimestamp()) {
             return MinuteError::CANNOT_BE_LESSER_THAN_TODAY;

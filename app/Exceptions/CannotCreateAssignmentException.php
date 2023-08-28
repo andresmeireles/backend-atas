@@ -6,6 +6,7 @@ namespace App\Exceptions;
 
 use App\Http\Response\ApiResponse;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -16,6 +17,9 @@ class CannotCreateAssignmentException extends Exception
         $this->message = $msg;
     }
 
+    /**
+     * @return void|JsonResponse
+     */
     public function render(Request $request)
     {
         if ($request->is('api/*')) {

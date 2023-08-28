@@ -19,9 +19,9 @@ class GenerateTokenTest extends TestCase
 
     private GenerateToken $service;
 
-    private LoggerInterface|MockObject $logger;
+    private LoggerInterface&MockObject $logger;
 
-    private Hasher|MockObject $hash;
+    private Hasher&MockObject $hash;
 
     protected function setUp(): void
     {

@@ -35,6 +35,6 @@ class ChangeStatusOfExpireMinuteCommand extends Command
     public function handle(): void
     {
         $expiredActiveMinutes = $this->activeMinute->getActiveExpiredMinutes();
-        $expiredActiveMinutes->map(fn ($activeMinute) => $activeMinute->minute?->expire());
+        $expiredActiveMinutes->map(fn ($activeMinute) => $activeMinute->minute->expire());
     }
 }

@@ -17,6 +17,7 @@ class AttachItemToTypeTest extends TestCase
 
     public function testAttachItem(): void
     {
+        /** @var MeetType */
         $meetType = MeetType::factory()->create();
         $item = MeetItem::factory()->create();
 
@@ -31,6 +32,7 @@ class AttachItemToTypeTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Meet type not found');
 
+        /** @var MeetType */
         $meetType = MeetType::factory()->create();
         $item = MeetItem::factory()->create();
 

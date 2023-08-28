@@ -12,10 +12,7 @@ use App\Models\Minute;
 use App\Models\User;
 use App\Service\Minute\Add;
 use App\Service\Minute\Create;
-use App\Service\Minute\MeetFactory;
-use App\Service\Minute\Meeting\MeetStatus;
 use App\Service\Minute\MinuteError;
-use App\Service\Minute\Assignments\AssignmentFactory;
 use App\Service\Minute\CreateAssignment;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -90,16 +87,20 @@ class AddTest extends TestCase
 
     private Add $add;
 
-    private Create $create;
+    private Create&MockObject $create;
 
-    private ActiveMinute|MockObject $activeMinute;
+    private ActiveMinute&MockObject $activeMinute;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->create = $this->createMock(Create::class);
         $this->activeMinute = $this->createMock(ActiveMinute::class);
-        $this->add = new Add(new Minute(), $this->activeMinute, $this->create, new CreateAssignment(new AssignmentCall(), new AssignmentHymn(), new AssignmentSimpleText()));
+        $this->add = new Add(
+            new Minute(),
+            $this->activeMinute,
+            $this->create
+        );
     }
 
     public function testCreate(): void
